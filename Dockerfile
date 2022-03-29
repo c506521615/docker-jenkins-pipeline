@@ -1,4 +1,4 @@
 FROM openjdk:8
 EXPOSE 8080
-ADD /target/Jenkins-Docker-Pipeline-Integration.jar Jenkins-Docker-Pipeline-Integration.jar
-ENTRYPOINT ["java","-jar","/Jenkins-Docker-Pipeline-Integration.jar"]
+ADD /target/addressbook-2.0.war target/addressbook-2.0.war
+ENTRYPOINT ["java","-war","/addressbook-2.0.war"]
