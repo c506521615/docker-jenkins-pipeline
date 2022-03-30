@@ -1,4 +1,9 @@
 pipeline {
+    environment {
+        registry = "c506521615/jenkinsdocker-integration"
+        registryCredential = 'dockerhub'
+        dockerImage = ''
+    }
     agent any
     tools {
         maven 'maven385'
@@ -34,5 +39,26 @@ pipeline {
                 sh 'mvn install'
             }
         }
+         stage('Building our image') {
+            steps {
+                script {
+                    dockerImage = docker.build registry + ":$BUILD_NUMBER"
+                }
+            }
+        }
+        stage('Remove Unused docker image') {
+            steps {
+        	sh "docker rmi $registry:$BUILD_NUMBER"
+      		}
+    	}
+        stage('Deploy our image') {
+            steps {
+                script {
+                    docker.withRegistry( '', registryCredential ) {
+                    dockerImage.push()
+                        }
+                    }   
+                }
+            }
+        }
     }
-}

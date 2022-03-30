@@ -1,4 +1,4 @@
 FROM openjdk:8
 EXPOSE 8080
-ADD /var/lib/jenkins/workspace/Jenkins-Docker-Pipeline-Integration/target/addressbook-2.0.war jenkinsdockerpipeline.war
-ENTRYPOINT ["java",".war","/jenkinsdockerpipeline.war"]
+MAINTAINER "chandrikasahoo@gmail.com"
+CMD curl -f http://localhost:8080/job/Jenkins-Docker-Pipeline-Integration || exit 1
