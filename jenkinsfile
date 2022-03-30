@@ -1,6 +1,6 @@
 pipeline {
     environment {
-        registry = "c506521615/jenkinsdocker-integration"
+        registry = "c506521615/jenkins-docker-integration"
         registryCredential = 'dockerhub'
         dockerImage = ''
     }
